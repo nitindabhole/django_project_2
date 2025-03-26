@@ -2,6 +2,7 @@
 
 {% block title %}Vehicles{% endblock title %}
 {%load static%}
+<!--bill-->
 <link rel="stylesheet" href="{%static 'style.css'%}">
 {% block body %}
 <form method="post" action="\bill">
@@ -90,7 +91,7 @@
         </div>
         <div class="form-group col-md-6">
           <label for="date">Pickup Date : </label>
-          <input type="date" class="form-control" id="date" name="date">
+          <input type="date" class="form-control" id="date" name="date" min="" required>
         </div>
       </div>
       <div class="form-row ">
@@ -130,8 +131,8 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body" id="printThis"><h1 style="text-align:center; background: -webkit-linear-gradient(#77f7f1, #094240);-webkit-background-clip: text;
--webkit-text-fill-color: transparent;" > Thanks for Booking! </h1><br>
+        <div class="modal-body" id="printThis">
+          <h1 style="text-align:center; background: -webkit-linear-gradient(#77f7f1, #094240);-webkit-background-clip: text;  -webkit-text-fill-color: transparent;" > Thanks for Booking! </h1><br>
           <p id="n1" class="p2" style="text-align:center; font-size: 25px; font-weight:bold; color:rgb(35, 12, 109)" >Customer Name :  <span></span></p>
           <p style="text-align:center"><span id="l1" class="p3" style="text-align:center; font-size: 25px; font-weight:bold ; color:rgb(35, 12, 109)" >From :  <span ></span></span> &nbsp;&nbsp;&nbsp;--------->&nbsp;&nbsp;&nbsp;
             <span id="l2" class="p3" style="text-align:center; font-size: 25px; font-weight:bold; color:rgb(35, 12, 109)" >To :  <span ></span></span></p>
@@ -156,6 +157,7 @@
 </form>
 
 <script>
+  document.getElementById("date").min = new Date().toISOString().split("T")[0]; // Set minimum date to today.
 
   function calculate(){
     var select = document.getElementById("cars11");
@@ -261,5 +263,6 @@ function printElement(elem) {
     $printSection.appendChild(domClone);
     window.print();
 }
+
 </script>
 {% endblock body %}
